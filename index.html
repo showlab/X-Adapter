@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Adding Universal Compatibility of Plugins for Upgraded Diffusion Model">
+  <!-- <meta name="keywords" content="Nerfies, D-NeRF, NeRF"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>X-Adapter</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/101181824?s=200&v=4">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">X-Adapter: Adding Universal Compatibility of Plugins for Upgraded Diffusion Model</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="">Lingmin Ran</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://vinthony.github.io/academic/">Xiaodong Cun</a><sup>3</sup>,</span>
+            <span class="author-block">
+              <a href="https://jia-wei-liu.github.io/">Jiawei Liu</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://ruizhaocv.github.io/">Rui Zhao</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Song Zijie</a><sup>4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://xinntao.github.io/">Xintao Wang</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.jussikeppo.com/">Jussi Keppo</a><sup>2</sup>
+            </span>
+            <span class="author-block">
+              <a href="https://sites.google.com/view/showlab">Mike Zheng Shou</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Show Lab,</span>
+            <span class="author-block"><sup>2</sup>National University of Singapore,</span>
+            <span class="author-block"><sup>3</sup>Tencent AI Lab,</span>
+            <span class="author-block"><sup>4</sup>Fudan University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/Paper/X_Adapter_Arxiv.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code(Coming Soon!)</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+            </div>
+
+            <div class="column has-text-centered">
+              <div id="TLNR">
+                📖TL;DR: <span id="xadapter">X-Adapter</span> enable plugins pretrained on old version (e.g. SD1.5) directly work with the upgraded Model (e.g., SDXL) without
+              further retraining
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video> -->
+      <img id="teaser" src="./static/image_X/xadapter_teaser.jpg">
+
+      <!-- <h2 class="subtitle has-text-centered">
+        <span id="xadapter">X-Adapter</span> universally upgrade plugins pretrained on old version (e.g. SD1.5), enabling them directly work with the upgraded Model (e.g., SDXL) without
+        further retraining
+      </h2> -->
+    </div>
+  </div>
+</section>
+
+<!-- 
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section id="Abstract">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <!-- <p>
+            We present the first method capable of photorealistically reconstructing a non-rigidly
+            deforming scene using photos/videos captured casually from mobile phones.
+          </p> -->
+          <p>
+            We introduce X-Adapter, a universal upgrader to enable the pretrained plug-and-play modules
+            (e.g., ControlNet, LoRA) to work directly with the upgraded text-to-image diffusion model (e.g., SD-XL) without further retraining. 
+          </p>
+          <p>
+            We achieve this goal by training an additional network to control the frozen upgraded model with the new text-image data pairs. 
+            In detail, X-Adapter keeps a frozen copy of the old model to preserve the connectors of different plugins. 
+            Additionally, X-Adapter adds trainable mapping layers that bridge the decoders from models of different versions for feature remapping. 
+            The remapped features will be used as guidance for the upgraded model. 
+            To enhance the guidance ability of X-Adapter, we employ a null-text training strategy for the upgraded model. 
+            After training, we also introduce a two-stage denoising strategy to align the initial latents of X-Adapter and the upgraded model. 
+          </p>
+          <p>
+            Thanks to our strategies, X-Adapter demonstrates universal compatibility with various plugins and also enables plugins of different versions to work together, 
+            thereby expanding the functionalities of diffusion community. To verify the effectiveness of the proposed method, 
+            we conduct extensive experiments and the results show that X-Adapter may facilitate wider application in the upgraded foundational diffusion model. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- <div class="hero-body"> -->
+      <div class="columns is-centered has-text-centered">
+        <!-- <div class="column is-four-fifths"> -->
+        <div class="column is-five-fifths">
+          <h2 class="title is-2">Pipeline</h2>
+      <!-- <h2 class="subtitle has-text-centered">
+        <h2 class="title is-3">Pipeline</h2>
+        <span class="dnerf">Pipeline</span> 
+      </h2> -->
+      <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video> -->
+      <img id="pipeline" src="./static/image_X/xadapter_pipeline_v5.png">
+      <div class="content has-text-justified">
+        <p>
+        </p>
+      </div>
+      
+      <div class="content has-text-justified">
+        <p>
+          <span id="pipeline">Left, Training: </span>
+          We add different noises to both the upgraded model and X-Adapter under the latent domain of
+          base and upgraded model. By setting the prompt of the upgraded model to empty and training the mapping layers, X-Adapter learns to
+          guide the upgraded mode
+        </p>
+        <p>
+          <span id="pipeline">Right, Inference: </span>
+          We provide two inference settings: (a) We can directly apply the plugins on the X-Adapter for the upgraded model. (b) A two-stage
+          influence scheme is introduced to improve image quality.
+        </p>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="Result">
+  <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-five-fifths">
+          <h2 class="title is-2">Results</h2>
+          <div class="content has-text-justified">
+            <p>
+              The showcases of different results on SDXL and SD 2.1 based on the proposed X-Adapter and pre-rained SD 1.5 plugins. 
+              X-Adapter shows wide support for different plugins and foundation models. 
+            </p>
+          </div>
+      <img id="result" src="./static/image_X/QualitativeResult.png">
+      
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-fifths">
+        <div class="content has-text-justified"> 
+          <p>
+            We also provide extensive results:
+          </p>
+        </div> 
+        <img id="result" src="./static/image_X/Supp_QualitativeResult_1.png">
+      </div> 
+    </div> 
+  </div> 
+</section>
+
+
+
+<!-- <section class="section" id="BibTeX"> -->
+<section id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{paperName,
+  author    = {},
+  title     = {},
+  journal   = {},
+  year      = {},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="github link" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is borrowed from <a
+            href="https://github.com/nerfies/nerfies.github.io/tree/main">nerfies</a>. We are very grateful for their work.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
