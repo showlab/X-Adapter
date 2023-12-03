@@ -169,7 +169,8 @@ body {
 }
 
 #TLNR {
-  background-color: rgb(227, 235, 227);
+  font-style: italic;
+  font-weight: bold;
 }
 
 #pipeline {

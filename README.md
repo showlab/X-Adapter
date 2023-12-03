@@ -1,1 +1,4 @@
-Official Implementation of X-Adapter:Adding Universal Compatibility of Plugins for Upgraded Diffusion Model
+# X-Adapter
+
+This is the project page repository for X-Adapter.
+
