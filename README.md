@@ -1,6 +1,6 @@
 # X-Adapter
 
-### [**paper**]() | [**website**]([showlab.github.io/X-Adapter/](https://showlab.github.io/X-Adapter/))
+### [**paper**]() | [**website**](https://showlab.github.io/X-Adapter/)
 
 This is author's implementation of "X-Adapter: Adding Universal Compatibility of Plugins for Upgraded Diffusion Model"  <br>
 
