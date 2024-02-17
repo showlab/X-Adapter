@@ -1,6 +1,5 @@
 # X-Adapter
 
-<<<<<<< HEAD
 This repository is the official implementation of [X-Adapter](https://arxiv.org/abs/2312.02238).
 
 **[X-Adapter: Adding Universal Compatibility of Plugins for Upgraded Diffusion Model](https://arxiv.org/abs/2312.02238)**
