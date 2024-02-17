@@ -1,5 +1,6 @@
 # X-Adapter
 
+<<<<<<< HEAD
 This repository is the official implementation of [X-Adapter](https://arxiv.org/abs/2312.02238).
 
 **[X-Adapter: Adding Universal Compatibility of Plugins for Upgraded Diffusion Model](https://arxiv.org/abs/2312.02238)**
@@ -16,6 +17,9 @@ This repository is the official implementation of [X-Adapter](https://arxiv.org/
 
 [![Project Website](https://img.shields.io/badge/Project-Website-orange)](https://showlab.github.io/X-Adapter/)
 [![arXiv](https://img.shields.io/badge/arXiv-2312.02238-b31b1b.svg)](https://arxiv.org/abs/2312.02238)
+
+### [**paper**](https://arxiv.org/abs/2312.02238) | [**website**](https://showlab.github.io/X-Adapter/)
+
 
 ![Overview_v7](https://github.com/showlab/X-Adapter/assets/152716091/eb41c508-826c-404f-8223-09765765823b)
 
