@@ -1,0 +1,14 @@
+accelerate == 0.18.0
+controlnet_aux == 0.0.7
+opencv_python_headless == 4.8.0.76
+dataclasses == 0.6
+diffusers == 0.20.0
+einops == 0.4.1
+huggingface_hub == 0.17.2
+imageio == 2.26.0
+matplotlib == 3.7.1
+numpy == 1.23.3
+safetensors == 0.3.3
+tqdm == 4.64.1
+transformers == 4.25.1
+Pillow == 10.2.0

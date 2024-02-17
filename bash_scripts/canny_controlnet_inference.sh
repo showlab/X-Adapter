@@ -1,0 +1,1 @@
+python inference.py --plugin_type "controlnet" --prompt "A cute cat, high quality, extremely detailed"  --condition_type "canny" --input_image_path "./assets/CuteCat.jpeg" --controlnet_condition_scale_list 1.5 --adapter_guidance_start_list 0.80 --adapter_condition_scale_list 1.00
