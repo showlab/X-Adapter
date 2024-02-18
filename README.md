@@ -67,7 +67,7 @@ After preparing all checkpoints, we can run inference code using different plugi
 
 ### Controlnet Inference
 
-Set `--controlnet_canny_path` or `--controlnet_depth_path` to ControlNet's path in the bash script. The default value is its huggingface model card. 
+Set `--controlnet_canny_path` or `--controlnet_depth_path` to ControlNet's path in the bash script. The default value is its Hugging Face model card. 
 
     sh ./bash_scripts/canny_controlnet_inference.sh
     sh ./bash_scripts/depth_controlnet_inference.sh
@@ -80,7 +80,7 @@ Set `--lora_model_path` to LoRA's checkpoint in the bash script. In this example
 
 ### Controlnet-Tile Inference
 
-Set `--controlnet_tile_path` to ControlNet-tile's path in the bash script. The default value is its huggingface model card. 
+Set `--controlnet_tile_path` to ControlNet-tile's path in the bash script. The default value is its Hugging Face model card. 
 
     sh ./bash_scripts/controlnet_tile_inference.sh
 
