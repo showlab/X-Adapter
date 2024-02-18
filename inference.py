@@ -106,6 +106,7 @@ def parse_args(input_args=None):
 
 def run_inference(args):
     current_datetime = datetime.datetime.now()
+    current_datetime = str(current_datetime).replace(":", "_")
     save_path = f"./result/{current_datetime}_lora" if args.plugin_type == "lora" else f"./result/{current_datetime}_controlnet"
     os.makedirs(save_path)
     args.save_path = save_path
