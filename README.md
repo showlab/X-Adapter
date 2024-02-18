@@ -59,7 +59,7 @@ Installing [xformers](https://github.com/facebookresearch/xformers) is highly re
 
 ### Checkpoint
 
-Models can be downloaded from our [HuggingFace page](https://huggingface.co/Lingmin-Ran/X-Adapter). Put the checkpoint in folder `./checkpoint/X-Adapter`.
+Models can be downloaded from our [Hugging Face page](https://huggingface.co/Lingmin-Ran/X-Adapter). Put the checkpoint in folder `./checkpoint/X-Adapter`.
 
 ## Usage
 
