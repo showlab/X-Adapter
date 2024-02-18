@@ -2,7 +2,6 @@ import os
 import datetime
 import argparse
 
-from transformers import CLIPTextModel, CLIPTokenizer, AutoTokenizer, PretrainedConfig
 from scripts.inference_controlnet import inference_controlnet
 from scripts.inference_lora import inference_lora
 from scripts.inference_ctrlnet_tile import inference_ctrlnet_tile
