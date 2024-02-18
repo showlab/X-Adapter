@@ -36,14 +36,15 @@ from diffusers.models.attention_processor import (
     XFormersAttnProcessor,
 )
 from diffusers.schedulers import KarrasDiffusionSchedulers
+from diffusers.utils.torch_utils import randn_tensor
 from diffusers.utils import (
     is_accelerate_available,
     is_accelerate_version,
     is_invisible_watermark_available,
     logging,
-    randn_tensor,
     replace_example_docstring,
 )
+
 from diffusers.pipelines.pipeline_utils import DiffusionPipeline
 from diffusers.pipelines.stable_diffusion_xl import StableDiffusionXLPipelineOutput
 from model.adapter import Adapter_XL
