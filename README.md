@@ -31,7 +31,7 @@ This repository is the official implementation of [X-Adapter](https://arxiv.org/
 
 [//]: # (</p>)
 
-Thank [kijai](https://github.com/kijai) for creating a CumfyUI Warpper Node [here](https://github.com/kijai/ComfyUI-Diffusers-X-Adapter)
+### Thank [kijai](https://github.com/kijai) for creating a CumfyUI Warpper Node [here](https://github.com/kijai/ComfyUI-Diffusers-X-Adapter)!!!
 
 ## News
 
