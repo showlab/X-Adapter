@@ -19,7 +19,7 @@ This repository is the official implementation of [X-Adapter](https://arxiv.org/
 
 ![Overview_v7](https://github.com/showlab/X-Adapter/assets/152716091/eb41c508-826c-404f-8223-09765765823b)
 
-<em> X-Adapter enable plugins pretrained on old version (e.g. SD1.5) directly work with the upgraded Model (e.g., SDXL) without further retraining.</em>
+<em> X-Adapter enables plugins pretrained on the old version (e.g. SD1.5) directly work with the upgraded Model (e.g., SDXL) without further retraining.</em>
 
 [//]: # (<p align="center">)
 
@@ -53,9 +53,9 @@ Installing [xformers](https://github.com/facebookresearch/xformers) is highly re
 
 **[Stable Diffusion]** [Stable Diffusion](https://arxiv.org/abs/2112.10752) is a latent text-to-image diffusion model capable of generating photo-realistic images given any text input. The pre-trained Stable Diffusion models can be downloaded from Hugging Face (e.g., [Stable Diffusion v1-5](https://huggingface.co/runwayml/stable-diffusion-v1-5)). You can also use fine-tuned Stable Diffusion models trained on different styles (e.g., [Anything V4.0](https://huggingface.co/andite/anything-v4.0), [Redshift](https://huggingface.co/nitrosocke/redshift-diffusion), etc.).
 
-**[ControlNet]** [Controlnet](https://github.com/lllyasviel/ControlNet) is a method to control diffusion model with spatial conditions. You can download ControlNet family [here](https://huggingface.co/lllyasviel/ControlNet).
+**[ControlNet]** [Controlnet](https://github.com/lllyasviel/ControlNet) is a method to control diffusion models with spatial conditions. You can download the ControlNet family [here](https://huggingface.co/lllyasviel/ControlNet).
 
-**[LoRA]** [LoRA](https://arxiv.org/abs/2106.09685) is a lightweight adapter to fine-tune large-scale pretrained model. It is widely used for style or identity customization in diffusion model. You can download LoRA from diffusion community(e.g., [civitai](https://civitai.com/)).
+**[LoRA]** [LoRA](https://arxiv.org/abs/2106.09685) is a lightweight adapter to fine-tune large-scale pretrained model. It is widely used for style or identity customization in diffusion models. You can download LoRA from the diffusion community (e.g., [civitai](https://civitai.com/)).
 
 ### Checkpoint
 
