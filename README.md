@@ -31,7 +31,7 @@ This repository is the official implementation of [X-Adapter](https://arxiv.org/
 
 [//]: # (</p>)
 
-### Thank [kijai](https://github.com/kijai) for creating a CumfyUI Warpper Node [here](https://github.com/kijai/ComfyUI-Diffusers-X-Adapter)! Please refer to this [tutorial](https://www.reddit.com/r/StableDiffusion/comments/1asuyiw/xadapter/) for hyperparameter setting.
+### Thank [kijai](https://github.com/kijai) for CumfyUI implementation [here](https://github.com/kijai/ComfyUI-Diffusers-X-Adapter)! Please refer to this [tutorial](https://www.reddit.com/r/StableDiffusion/comments/1asuyiw/xadapter/) for hyperparameter setting.
 
 ## News
 
