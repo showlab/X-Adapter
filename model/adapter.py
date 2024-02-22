@@ -281,7 +281,9 @@ class Adapter_XL(nn.Module):
             t = self.time_proj(t) # b, 320
             t = t.to(dtype=x[0].dtype)
             t = self.time_embedding(t)  # b, 1280
-        output_size = (b, 640, 128, 128)  # last CA layer output
+        # output_size = (b, 640, 128, 128)  # last CA layer output
+        output_size = (b, 640, (x[0].shape)[2] * 4 , (x[0].shape)[3] * 4)  # last CA layer output should suit to the input size  CSR
+
         for i in range(len(self.channels)):
             for j in range(self.nums_rb):
                 idx = i * self.nums_rb + j
