@@ -104,9 +104,9 @@ def parse_args(input_args=None):
 
 
 def run_inference(args):
-    current_datetime = datetime.datetime.now()
+    current_datetime = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     save_path = f"./result/{current_datetime}_lora" if args.plugin_type == "lora" else f"./result/{current_datetime}_controlnet"
-    os.makedirs(save_path)
+    os.makedirs(save_path, exist_ok=True)  # 既に存在してもエラーにならないように
     args.save_path = save_path
 
     if args.plugin_type == "controlnet":

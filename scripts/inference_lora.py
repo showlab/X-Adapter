@@ -9,8 +9,12 @@ from diffusers import DPMSolverMultistepScheduler
 from diffusers.utils import load_image
 from torch import Generator
 from safetensors.torch import load_file
+from safetensors.torch import load
 from PIL import Image
 from packaging import version
+from diffusers import StableDiffusionXLPipeline
+import pprint
+import inspect
 
 from transformers import CLIPTextModel, CLIPTokenizer, AutoTokenizer, PretrainedConfig
 
@@ -102,11 +106,13 @@ def load_lora(pipeline, lora_model_path, alpha):
             weight_up = state_dict[pair_keys[0]].squeeze(3).squeeze(2).to(torch.float32)
             weight_down = state_dict[pair_keys[1]].squeeze(3).squeeze(2).to(torch.float32)
             curr_layer.weight.data += alpha * torch.mm(weight_up, weight_down).unsqueeze(2).unsqueeze(3)
+
+
+
         else:
             weight_up = state_dict[pair_keys[0]].to(torch.float32)
             weight_down = state_dict[pair_keys[1]].to(torch.float32)
             curr_layer.weight.data += alpha * torch.mm(weight_up, weight_down)
-
         # update visited list
         for item in pair_keys:
             visited.append(item)
@@ -145,50 +151,37 @@ def inference_lora(args):
     adapter.load_state_dict(ckpt)
     print('successfully load adapter')
     # load SD1.5
-    noise_scheduler_sd1_5 = DDPMScheduler.from_pretrained(
-        path, subfolder="scheduler"
-    )
-    tokenizer_sd1_5 = CLIPTokenizer.from_pretrained(
-        path, subfolder="tokenizer", revision=None
-    )
-    text_encoder_sd1_5 = CLIPTextModel.from_pretrained(
-        path, subfolder="text_encoder", revision=None
-    )
-    vae_sd1_5 = AutoencoderKL.from_pretrained(
-        path, subfolder="vae", revision=None
-    )
-    unet_sd1_5 = UNet2DConditionModel.from_pretrained(
-        path, subfolder="unet", revision=None
-    )
+    sdpipline = StableDiffusionPipeline.from_single_file(f"{path}")
+    unet_sd1_5 = UNet2DConditionModel.from_config(sdpipline.unet.config)
+    unet_sd1_5.load_state_dict(sdpipline.unet.state_dict().copy())
+    "return_hidden_states" in inspect.signature(sdpipline.unet.forward).parameters.keys()  # False
+    "return_hidden_states" in inspect.signature(unet_sd1_5.forward).parameters.keys()  # True
+
+
+    vae_sd1_5 = sdpipline.vae
+    # <All keys matched successfully>
+    #DPMSolverMultistepScheduler.load_state_dict
+    noise_scheduler_sd1_5 = DDPMScheduler.from_config(sdpipline.scheduler.config)
+    tokenizer_sd1_5 = sdpipline.tokenizer
+    text_encoder_sd1_5  = sdpipline.text_encoder
+
     print('successfully load SD1.5')
     # load SDXL
-    tokenizer_one = AutoTokenizer.from_pretrained(
-        path_sdxl, subfolder="tokenizer", revision=None, use_fast=False
-    )
-    tokenizer_two = AutoTokenizer.from_pretrained(
-        path_sdxl, subfolder="tokenizer_2", revision=None, use_fast=False
-    )
-    # import correct text encoder classes
-    text_encoder_cls_one = import_model_class_from_model_name_or_path(
-        path_sdxl, None
-    )
-    text_encoder_cls_two = import_model_class_from_model_name_or_path(
-        path_sdxl, None, subfolder="text_encoder_2"
-    )
-    # Load scheduler and models
-    noise_scheduler = DDPMScheduler.from_pretrained(path_sdxl, subfolder="scheduler")
-    text_encoder_one = text_encoder_cls_one.from_pretrained(
-        path_sdxl, subfolder="text_encoder", revision=None
-    )
-    text_encoder_two = text_encoder_cls_two.from_pretrained(
-        path_sdxl, subfolder="text_encoder_2", revision=None
-    )
-    vae = AutoencoderKL.from_pretrained(
-        path_vae_sdxl, revision=None
-    )
-    unet = UNet2DConditionModel.from_pretrained(
-        path_sdxl, subfolder="unet", revision=None
-    )
+    sdpipline2 = StableDiffusionXLPipeline.from_single_file(f"{path_sdxl}")
+    unetXL = UNet2DConditionModel.from_config(sdpipline2.unet.config)
+    unetXL.load_state_dict(sdpipline2.unet.state_dict().copy())
+    "return_hidden_states" in inspect.signature(sdpipline2.unet.forward).parameters.keys()  # False
+    "return_hidden_states" in inspect.signature(unetXL.forward).parameters.keys()  # True
+        #unet = unet_sd1_5)
+    tokenizer_one  = sdpipline2.tokenizer
+    tokenizer_two  = sdpipline2.tokenizer_2
+    text_encoder_cls_one =  sdpipline2.text_encoder
+    text_encoder_cls_two =  sdpipline2.text_encoder_2
+    noise_scheduler = sdpipline2.scheduler
+    text_encoder_one =  sdpipline2.text_encoder
+    text_encoder_two =  sdpipline2.text_encoder_2
+    vae  = sdpipline2.vae
+
     print('successfully load SDXL')
 
     if is_xformers_available():
@@ -199,20 +192,20 @@ def inference_lora(args):
             logger.warn(
                 "xFormers 0.0.16 cannot be used for training in some GPUs. If you observe problems during training, please update xFormers to at least 0.0.17. See https://huggingface.co/docs/diffusers/main/en/optimization/xformers for more details."
             )
-        unet.enable_xformers_memory_efficient_attention()
+        unetXL.enable_xformers_memory_efficient_attention()
         unet_sd1_5.enable_xformers_memory_efficient_attention()
 
     with torch.inference_mode():
         gen = Generator("cuda")
         gen.manual_seed(args.seed)
-
         pipe = StableDiffusionXLAdapterPipeline(
+
             vae=vae,
             text_encoder=text_encoder_one,
             text_encoder_2=text_encoder_two,
             tokenizer=tokenizer_one,
             tokenizer_2=tokenizer_two,
-            unet=unet,
+            unet=unetXL,
             scheduler=noise_scheduler,
             vae_sd1_5=vae_sd1_5,
             text_encoder_sd1_5=text_encoder_sd1_5,
@@ -221,7 +214,8 @@ def inference_lora(args):
             scheduler_sd1_5=noise_scheduler_sd1_5,
             adapter=adapter,
         )
-        # load lora
+
+        # load lora #unet_sd1_5
         load_lora(pipe, lora_model_path, 1)
         print('successfully load lora')
 
@@ -230,7 +224,6 @@ def inference_lora(args):
         pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
         pipe.scheduler_sd1_5 = DPMSolverMultistepScheduler.from_config(pipe.scheduler_sd1_5.config)
         pipe.scheduler_sd1_5.config.timestep_spacing = "leading"
-
         for i in range(args.iter_num):
             for adapter_guidance_start in adapter_guidance_start_list:
                 for adapter_condition_scale in adapter_condition_scale_list:
@@ -244,9 +237,3 @@ def inference_lora(args):
                     img.save(
                         f"{args.save_path}/{prompt[:10]}_{i}_ags_{adapter_guidance_start:.2f}_acs_{adapter_condition_scale:.2f}.png")
     print(f"results saved in {args.save_path}")
-
-
-
-
-
-
