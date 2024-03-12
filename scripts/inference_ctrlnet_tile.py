@@ -94,7 +94,9 @@ def inference_ctrlnet_tile(args):
     )
 
     source_image = Image.open(args.input_image_path)
-    control_image = resize_for_condition_image(source_image, 512)
+    # control_image = resize_for_condition_image(source_image, 512)
+    input_image = source_image.convert("RGB")
+    control_image = input_image.resize((args.width_sd1_5, args.height_sd1_5), resample=Image.LANCZOS)
 
     print('successfully load controlnet')
     # load adapter
@@ -195,8 +197,8 @@ def inference_ctrlnet_tile(args):
                     for adapter_condition_scale in adapter_condition_scale_list:
                         img = \
                             pipe(prompt=prompt, negative_prompt=negative_prompt, prompt_sd1_5=prompt_sd1_5,
-                                 width=1024, height=1024, height_sd1_5=512, width_sd1_5=512,
-                                 source_img=control_image, image=control_image,
+                                 width=args.width, height=args.height, height_sd1_5=args.height_sd1_5,
+                                 width_sd1_5=args.width_sd1_5, source_img=control_image, image=control_image,
                                  num_inference_steps=args.num_inference_steps, guidance_scale=args.guidance_scale,
                                  num_images_per_prompt=1, generator=gen,
                                  controlnet_conditioning_scale=controlnet_condition_scale,

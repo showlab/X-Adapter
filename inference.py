@@ -94,6 +94,22 @@ def parse_args(input_args=None):
         "--seed",
         type=int, default=1674753452
     )
+    parser.add_argument(
+        "--width",
+        type=int, default=1024
+    )
+    parser.add_argument(
+        "--height",
+        type=int, default=1024
+    )
+    parser.add_argument(
+        "--height_sd1_5",
+        type=int, default=512
+    )
+    parser.add_argument(
+        "--width_sd1_5",
+        type=int, default=512
+    )
 
     if input_args is not None:
         args = parser.parse_args(input_args)
@@ -105,6 +121,7 @@ def parse_args(input_args=None):
 
 def run_inference(args):
     current_datetime = datetime.datetime.now()
+    current_datetime = str(current_datetime).replace(":", "_")
     save_path = f"./result/{current_datetime}_lora" if args.plugin_type == "lora" else f"./result/{current_datetime}_controlnet"
     os.makedirs(save_path)
     args.save_path = save_path

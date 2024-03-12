@@ -92,7 +92,8 @@ def inference_controlnet(args):
     print('successfully load controlnet')
 
     input_image = Image.open(args.input_image_path)
-    input_image = input_image.resize((512, 512), Image.LANCZOS)
+    # input_image = input_image.resize((512, 512), Image.LANCZOS)
+    input_image = input_image.resize((args.width_sd1_5, args.height_sd1_5), Image.LANCZOS)
     if args.condition_type == "canny":
         control_image = canny(input_image)
         control_image.save(f'{args.save_path}/{prompt[:10]}_canny_condition.png')
@@ -200,8 +201,8 @@ def inference_controlnet(args):
                     for adapter_condition_scale in adapter_condition_scale_list:
                         img = \
                             pipe(prompt=prompt, negative_prompt=negative_prompt, prompt_sd1_5=prompt_sd1_5,
-                                 width=1024, height=1024, height_sd1_5=512, width_sd1_5=512,
-                                 image=control_image,
+                                 width=args.width, height=args.height, height_sd1_5=args.height_sd1_5,
+                                 width_sd1_5=args.width_sd1_5, image=control_image,
                                  num_inference_steps=args.num_inference_steps, guidance_scale=args.guidance_scale,
                                  num_images_per_prompt=1, generator=gen,
                                  controlnet_conditioning_scale=controlnet_condition_scale,

@@ -235,8 +235,8 @@ def inference_lora(args):
             for adapter_guidance_start in adapter_guidance_start_list:
                 for adapter_condition_scale in adapter_condition_scale_list:
                     img = \
-                        pipe(prompt=prompt, prompt_sd1_5=prompt_sd1_5, negative_prompt=negative_prompt, width=1024,
-                             height=1024, height_sd1_5=512, width_sd1_5=512,
+                        pipe(prompt=prompt, prompt_sd1_5=prompt_sd1_5, negative_prompt=negative_prompt, width=args.width,
+                             height=args.height, height_sd1_5=args.height_sd1_5, width_sd1_5=args.width_sd1_5,
                              num_inference_steps=args.num_inference_steps, guidance_scale=args.guidance_scale,
                              num_images_per_prompt=1, generator=gen,
                              adapter_guidance_start=adapter_guidance_start,

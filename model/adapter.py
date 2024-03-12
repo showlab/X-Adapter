@@ -183,7 +183,7 @@ class Adapter_XL(nn.Module):
             self.use_zero_conv = False
         for i in range(len(self.channels)):
             if self.fusion_type == 'SPADE':
-                # Corresponding to SPADE <Semantic Image Synthesis with Spatially-Adaptive Normalization>
+                # Corresponding to SPADE <https://arxiv.org/abs/1903.07291>
                 self.gamma.append(nn.Conv2d(out_channels[i], out_channels[i], 1, padding=0))
                 self.beta.append(nn.Conv2d(out_channels[i], out_channels[i], 1, padding=0))
                 self.norm.append(nn.BatchNorm2d(out_channels[i]))
@@ -281,7 +281,9 @@ class Adapter_XL(nn.Module):
             t = self.time_proj(t) # b, 320
             t = t.to(dtype=x[0].dtype)
             t = self.time_embedding(t)  # b, 1280
-        output_size = (b, 640, 128, 128)  # last CA layer output
+        # output_size = (b, 640, 128, 128)  # last CA layer output
+        output_size = (b, 640, (x[0].shape)[2] * 4 , (x[0].shape)[3] * 4)  # last CA layer output should suit to the input size  CSR
+
         for i in range(len(self.channels)):
             for j in range(self.nums_rb):
                 idx = i * self.nums_rb + j
