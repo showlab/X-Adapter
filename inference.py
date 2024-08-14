@@ -63,6 +63,10 @@ def parse_args(input_args=None):
         type=str, help='path to lora', default="./checkpoint/lora/MoXinV1.safetensors"
     )
     parser.add_argument(
+        "--lora_weight",
+        type=float, help='lora weight', default=1.0
+    )
+    parser.add_argument(
         "--prompt",
         type=str, help='SDXL prompt', default=None, required=True
     )

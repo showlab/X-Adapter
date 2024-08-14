@@ -124,6 +124,7 @@ def inference_lora(args):
     path_vae_sdxl = args.path_vae_sdxl
     adapter_path = args.adapter_checkpoint
     lora_model_path = args.lora_model_path
+    lora_weight = args.lora_weight
 
     prompt = args.prompt
     if args.prompt_sd1_5 is None:
@@ -222,7 +223,7 @@ def inference_lora(args):
             adapter=adapter,
         )
         # load lora
-        load_lora(pipe, lora_model_path, 1)
+        load_lora(pipe, lora_model_path, lora_weight)
         print('successfully load lora')
 
         pipe.to('cuda', weight_dtype)
